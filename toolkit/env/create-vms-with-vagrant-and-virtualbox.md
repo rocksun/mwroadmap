@@ -139,7 +139,7 @@ vagrant halt
 vagrant halt wls1
 ```
 
-销毁配置的虚拟机
+销毁
 
 ```powershell
 #销毁当前目录下所有的虚拟机
@@ -152,7 +152,6 @@ vagrant destroy wls1
 
 Vagrant基本命令详解
 https://blog.csdn.net/chszs/article/details/51925179
-
 
 vagrant box各种命令汇总
 https://www.cnblogs.com/lovebing/p/9509923.html
