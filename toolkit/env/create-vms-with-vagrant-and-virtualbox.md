@@ -11,7 +11,7 @@ VirtualBox 是类似于 VMWare 的虚拟机工具，开源且跨平台。Vagrant
 * https://www.virtualbox.org/wiki/Downloads
 * https://www.vagrantup.com/downloads
 
-按照提示安装即可,并无特别的设置。
+按照提示安装即可，并无特别的设置。
 
 ### 创建项目
 
