@@ -105,8 +105,6 @@ vagrant up
 
 登陆成功后进入到根目录下即可看到一个名为 weblogic_data 的文件夹，当在 windows 中的 ./weblogic 目录中放置或更改文件时，这些操作也会同步到虚拟机中的 weblogic_data 文件夹。
 
-
-
 ## 一些 Vagrant 的基本操作
 
 查看当前虚拟机状态
@@ -160,4 +158,3 @@ https://blog.csdn.net/oblily/article/details/88851000
 
 vagrant box各种命令汇总
 https://www.cnblogs.com/lovebing/p/9509923.html
-
