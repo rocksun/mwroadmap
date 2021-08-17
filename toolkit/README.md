@@ -34,7 +34,7 @@ VSCode 是一款优秀的编辑器，通过各种强大的插件，可以实现�
 
 ### vagrant - 虚拟机管理
 
-Vagrant 可以帮助我们快速搭建虚拟机环境，免去了安装虚拟机，配置虚拟机的烦恼。可以参考 [Vagrant+VirtualBox](./env/create-vms-with-vagrant-and-virtualgox.md)。
+Vagrant 可以帮助我们快速搭建虚拟机环境，免去了安装虚拟机，配置虚拟机的烦恼。可以参考 [Vagrant+VirtualBox](./env/create-vms-with-vagrant-and-virtualbox.md)。
 
 如果你希望同时使用 Hyper-V，可以参考[Vagrant+Hyper-V](http://yylives.cc/2021/08/10/create-vm-with-hyperv-and-vagrant/)都是不错的选择。
 

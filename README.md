@@ -41,6 +41,6 @@
 MQ 是一种消息中间件，详细的学习路径可以参考[这里](./mw/wmq/README.md)。
 
 ### 2.4.CICS
-CICS（ Customer Information Control System ）-IBM的交易中间件。详细的学习路径可以参考[这里](./toolket/../toolkit/mw/cics/README.md)。
+CICS（ Customer Information Control System ）-IBM的交易中间件。详细的学习路径可以参考[这里](./mw/cics/README.md)。
 
 
