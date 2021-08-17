@@ -153,8 +153,6 @@ vagrant destroy wls1
 Vagrant基本命令详解
 https://blog.csdn.net/chszs/article/details/51925179
 
-Vagrant - SSH连接方式
-https://blog.csdn.net/oblily/article/details/88851000
 
 vagrant box各种命令汇总
 https://www.cnblogs.com/lovebing/p/9509923.html
