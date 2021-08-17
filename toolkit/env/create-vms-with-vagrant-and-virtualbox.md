@@ -1,36 +1,33 @@
 # 使用 VirtualBox 和 Vagrant 快速搭建虚拟环境
 
-VirtualBox是类似于VMWare的虚拟机工具，开源且跨平台。Vagrant是开源的管理虚拟机管理软件，通过Vagrant，结合VirtualBox，避免了手工配置虚拟机参数，实现了虚拟机环境的快速搭建。
+VirtualBox 是类似于 VMWare 的虚拟机工具，开源且跨平台。Vagrant 是开源的管理虚拟机管理软件，通过 Vagrant，结合 VirtualBox，避免了手工配置虚拟机参数，实现了虚拟机环境的快速搭建。
 
-本文介绍了如何使用VirtualBox和Vagrant快速搭建虚拟机环境，希望这种方式可以成为我们以后配置虚拟机环境的标准方式。
+本文介绍了如何使用 VirtualBox 和 Vagrant 快速搭建虚拟机环境，希望这种方式可以成为我们以后配置虚拟机环境的标准方式。
 
 ## 基本操作步骤
 
 ### 软件下载及安装
 
-VirtualBox  [点击这里进行下载](https://www.virtualbox.org/)
-Vagrant     [点击这里进行下载](https://www.virtualbox.org/)
+* https://www.virtualbox.org/wiki/Downloads
+* https://www.vagrantup.com/downloads
 
 按照提示安装即可,并无特别的设置。
 
-VirtualBox安装完成后，需要将VirtualBox命令添加到系统路径，默认情况下路径为 C:\Program Files\Oracle\VirtualBox。在“我的电脑”点击右键，选择属性，然后依次点选“高级系统设置>高级>环境变量”,选择PATH，在PATH的值中添加“;C:\Program Files\Oracle\VirtualBox”。
-
 ### 创建项目
 
-在自己心仪的位置创建一个工程文件夹，文件夹名称可根据自己的习惯自行设置，本教程使用的名称路径为 "D:\Project\vagrant\rhel7"，之后进行以下操作：
+在自己心仪的位置创建一个工程文件夹，文件夹名称可根据自己的习惯自行设置，本教程使用的名称路径为 D:\Project\vagrant\rhel7，之后进行以下操作：
 
-1.在该目录中创建一个文件夹“weblogic”作为之后windows与linux之间的共享文件夹，方便日后的文件传输；
-2.在该目录中创建一个文件“Vagrantfile”作为Vagrant的配置文件。
+1.在该目录中创建一个文件夹 weblogic 作为之后 windows 与 linux 之间的共享文件夹，方便日后的文件传输；
+2.在该目录中创建一个文件 Vagrantfile 作为 Vagrant 的配置文件。
 
-“Vagrantfile”的内容如下：
+Vagrantfile的内容如下：
 
 ```powershell
 
 VAGRANTFILE_API_VERSION = "2"
 
 $script = <<SCRIPT
-# Silly Ubuntu 12.04 doesn't have the
-# --stdin option in the passwd utility
+
 echo root:vagrant | chpasswd
 
 cat << EOF >> /etc/hosts
@@ -75,7 +72,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   end
 
 ```
-可直接将其复制到自己创建的“Vagrantfile”中，关于本文档的详细介绍请看最后一章。
+可直接将其复制到自己创建的 Vagrantfile 中。
 
 ### 根据配置安装虚拟机
 
@@ -85,7 +82,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 vagrant up
 ```
 
-第一次使用本命令即可根据配置文件“Vagrantfile”进行虚拟机的安装
+第一次使用本命令即可根据配置文件 Vagrantfile 进行虚拟机的安装
 
 ### Vagrant 的初步操作
 
@@ -95,7 +92,7 @@ vagrant up
 vagrant up
 ```
 
-即可打开配置的两个虚拟机wls1，wls2,使用ssh工具(如Xshell)进行链接，连接IP为：
+即可打开配置的两个虚拟机 wls1、wls2，使用 ssh 工具(如 Xshell )进行链接，连接 IP 为：
 
 ```powershell
 # wls1 IP
@@ -104,6 +101,57 @@ vagrant up
 172.16.0.152
 ```
 
-连接使用的用户名为vagrant，密码分别使用其对应的秘钥(例如wls1秘钥的路径为：“./vagrant/wls1/private_key”)。
+例如登录虚拟机 wls1 时使用的用户名为 vagrant，使用秘钥登录，秘钥的路径为 ./.vagrant/wls1/private_key。
 
-登陆成功后进入到根目录下即可看到一个名为“weblogic_data”的文件夹，当在windows中的“./weblogic”目录中放置或更改文件时，这些操作也会同步到虚拟机中的“weblogic_data”文件夹。
+登陆成功后进入到根目录下即可看到一个名为 weblogic_data 的文件夹，当在 windows 中的 ./weblogic 目录中放置或更改文件时，这些操作也会同步到虚拟机中的 weblogic_data 文件夹。
+
+## 一些 Vagrant 的基本操作
+
+查看当前虚拟机状态
+
+
+```powershell
+vagrant status
+```
+
+启动
+
+```powershell
+#配置文件中的所有虚拟机全部启动
+vagrant up
+#单独启动 wls1
+vagrant up wls1
+```
+
+启用SSH登陆虚拟机
+
+```powershell
+#启用SSH登陆 wls1
+vagrant ssh wls1
+```
+
+停止
+
+```powershell
+#配置文件中的所有虚拟机全部停止
+vagrant halt
+#单独停止 wls1
+vagrant halt wls1
+```
+
+销毁
+
+```powershell
+#销毁当前目录下所有的虚拟机
+vagrant destroy
+#销毁当前目录下的 wls1
+vagrant destroy wls1
+```
+
+## 参考资料
+
+Vagrant基本命令详解
+https://blog.csdn.net/chszs/article/details/51925179
+
+vagrant box各种命令汇总
+https://www.cnblogs.com/lovebing/p/9509923.html
