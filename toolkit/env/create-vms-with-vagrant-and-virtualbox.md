@@ -15,10 +15,11 @@ VirtualBox 是类似于 VMWare 的虚拟机工具，开源且跨平台。Vagrant
 
 ### 创建项目
 
-在自己心仪的位置创建一个工程文件夹，文件夹名称可根据自己的习惯自行设置，本教程使用的名称路径为 D:\Project\vagrant\rhel7，之后进行以下操作：
+在自己心仪的位置创建一个目录，目录名称可根据自己的使用习惯自行设置，本次教程使用的目录为 D:\Project\vagrant\rhel7。在该目录中创建一个子目录 weblogic 和 Vagrantfile 文件。
 
-1.在该目录中创建一个文件夹 weblogic 作为之后 windows 与 linux 之间的共享文件夹，方便日后的文件传输；
-2.在该目录中创建一个文件 Vagrantfile 作为 Vagrant 的配置文件。
+* 目录 weblogic 是 windows 与 linux 之间的共享文件夹，之后可以通过此目录传输文件
+* 文件 Vagrantfile 是 Vagrant 在配置虚拟机时的需要的配置文件。
+
 
 Vagrantfile的内容如下：
 
@@ -101,9 +102,9 @@ vagrant up
 172.16.0.152
 ```
 
-例如登录虚拟机 wls1 时使用的用户名为 vagrant，使用秘钥登录，秘钥的路径为 ./.vagrant/wls1/private_key。
+在登录时，登录虚拟机使用的用户名为 vagrant，在输入密码处使用秘钥登录，秘钥的路径为 ./.vagrant/主机名/private_key。
 
-登陆成功后进入到根目录下即可看到一个名为 weblogic_data 的文件夹，当在 windows 中的 ./weblogic 目录中放置或更改文件时，这些操作也会同步到虚拟机中的 weblogic_data 文件夹。
+登陆成功后在虚拟机根目录下，可看到一个名为 weblogic_data 的文件夹，当在 windows 中的 ./weblogic 目录中放置或更改文件时，这些操作也会同步到虚拟机中的 weblogic_data 文件夹。
 
 ## 一些 Vagrant 的基本操作
 
