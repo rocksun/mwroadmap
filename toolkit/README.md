@@ -2,6 +2,7 @@
 
 - [编辑器](#编辑器)
   - [VSCode](#vscode)
+  - [Ultraedit](#ultraedit)
 - [环境搭建](#环境搭建)
   - [vagrant](#vagrant)
   - [Kubernetes Desktop](#kubernetes-desktop)
@@ -14,6 +15,8 @@
 ### VSCode
 
 VSCode 是一款优秀的编辑器，通过各种强大的插件，可以实现从普通文本编辑到高级 IDE 的功能。我们建议使用 VSCode 编写 Markdown 文档，有些最佳实践可以看这个[教程](./editor/vscode-intro.md)。
+
+### Ultraedit
 
 
 ## 环境搭建
