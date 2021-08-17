@@ -101,7 +101,7 @@ vagrant up
 172.16.0.152
 ```
 
-连接的用户名为 vagrant，密码分别使用其对应的秘钥(例如 wls1 秘钥的路径为 ./vagrant/wls1/private_key )。
+例如登录虚拟机 wls1 时使用的用户名为 vagrant，使用秘钥登录，秘钥的路径为 ./.vagrant/wls1/private_key。
 
 登陆成功后进入到根目录下即可看到一个名为 weblogic_data 的文件夹，当在 windows 中的 ./weblogic 目录中放置或更改文件时，这些操作也会同步到虚拟机中的 weblogic_data 文件夹。
 
