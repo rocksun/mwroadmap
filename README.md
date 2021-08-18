@@ -1,7 +1,23 @@
 # 中间件技术专家之路
 
+其他材料：
+
 * [相关资料下载](https://www.jianguoyun.com/p/DTf1CzQQko7ZCRjc74QE)
 * [专家工具箱](./toolkit/README.md)
+
+目录：
+
+- [0.basic - 基础知识](#0basic---基础知识)
+- [1.tx-and-jee - 交易系统与 JEE](#1tx-and-jee---交易系统与-jee)
+- [2.jee-mw - 各类 JEE 中间件](#2jee-mw---各类-jee-中间件)
+  - [2.1.WebLogic](#21weblogic)
+  - [2.2.WAS](#22was)
+  - [2.3.Tomcat](#23tomcat)
+- [3.private-mw - 各类非标准的中间件](#3private-mw---各类非标准的中间件)
+  - [3.1.CICS](#31cics)
+  - [3.2.Tuxedo](#32tuxedo)
+- [4.mq-mw - 各类消息中间件](#4mq-mw---各类消息中间件)
+  - [4.1.WMQ](#41wmq)
 
 ## 0.basic - 基础知识
 
@@ -35,13 +51,20 @@
 
 ### 2.1.WebLogic
 
-### 2.2.WebSphere
+### 2.2.WAS
 
-### 2.3. MQ
+### 2.3.Tomcat
 
-MQ 是一种消息中间件，详细的学习路径可以参考[这里](./mw/wmq/README.md)。
+## 3.private-mw - 各类非标准的中间件
 
-### 2.4.CICS
+### 3.1.CICS
 CICS（ Customer Information Control System ）-IBM的交易中间件。详细的学习路径可以参考[这里](./mw/cics/README.md)。
 
+### 3.2.Tuxedo
+
+## 4.mq-mw - 各类消息中间件
+
+### 4.1.WMQ
+
+MQ 是一种消息中间件，详细的学习路径可以参考[这里](./mw/wmq/README.md)。
 
