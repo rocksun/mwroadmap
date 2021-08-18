@@ -5,16 +5,16 @@
 
 ## 0.basic - 基础知识
 
-大学里应该具备的能力，例如操作系统、网络，这里我们就不各位可以参考以下资料学习。
+操作系统、网络、密码学这些知识应该是从事计算机相关工作的基础，如果确实某种原因我们没有学好，那我们只能通过一些方式突击学习一下。[10分钟速成课：计算机科学](https://space.bilibili.com/5385034/channel/detail?cid=16059&ctype=0)是一个很棒的系列科普视频，大家有时间可以自己看看，以下是我认为可以优先观看的内容：
 
-* [深入理解计算机系统（CSAPP）（书）](https://book.douban.com/subject/5333562/)
-* [网络是怎样连接的（书）](https://book.douban.com/subject/26941639/)
-* [程序是怎样跑起来的（书）](https://book.douban.com/subject/26365491/)
-* Linux 基础操作（待补充）
+* [早期的计算](https://www.bilibili.com/video/BV1ux41117nh)
+* [二进制](https://www.bilibili.com/video/BV13x41167PZ)
+* [操作系统](https://www.bilibili.com/video/BV1kW411h7y2)
+* [命令行界面](https://www.bilibili.com/video/BV1nW411875k)
+* [计算机网络](https://www.bilibili.com/video/BV1rW411J7dB)
+* [密码学](https://www.bilibili.com/video/BV1dW411p7Hi)
 
-《深入理解计算机系统（CSAPP）》可能对于有些人太难了，可以看简化版的《程序是怎样跑起来的》。
-
-我觉得能理解“一个程序是怎么跑起来”是非常重要的能力。与之相关的是，程序基本上都是做为一个 *操作系统* 进程运行的，而且一般都是会通过“网络”连接到其他程序，所以操作系统和网络也是很重要的能力。
+不过，专业人事看科普其实是丢人的，如果想系统的补课，可以看看[这里](./basic/README.md)推荐的一些书。
 
 ## 1.tx-and-jee - 交易系统与 JEE
 
