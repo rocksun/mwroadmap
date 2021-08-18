@@ -11,7 +11,7 @@ VirtualBox 是类似于 VMWare 的虚拟机工具，开源且跨平台。Vagrant
 * https://www.virtualbox.org/wiki/Downloads
 * https://www.vagrantup.com/downloads
 
-按照提示安装即可,并无特别的设置。
+按照提示安装即可，并无特别的设置。
 
 ### 创建项目
 
@@ -73,38 +73,29 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   end
 
 ```
-可直接将其复制到自己创建的 Vagrantfile 中。
 
-### 根据配置安装虚拟机
+### 启动虚拟机
 
-在当前目录使用命令行输入
-
-```powershell
-vagrant up
-```
-
-第一次使用本命令即可根据配置文件 Vagrantfile 进行虚拟机的安装
-
-### Vagrant 的初步操作
-
-再次使用命令行输入
+在 Vagrantfile 所在目录的命令行中输入：
 
 ```powershell
 vagrant up
 ```
 
-即可打开配置的两个虚拟机 wls1、wls2，使用 ssh 工具(如 Xshell )进行链接，连接 IP 为：
+如果没有报错则启动成功。
+
+### 验证虚拟机
+
+输入指令：
 
 ```powershell
-# wls1 IP
-172.16.0.151
-# wls2 IP
-172.16.0.152
+#启用SSH登陆 wls1
+vagrant ssh wls1
+cd /
+ls
 ```
 
-在登录时，登录虚拟机使用的用户名为 vagrant，在输入密码处使用秘钥登录，秘钥的路径为 ./.vagrant/主机名/private_key。
-
-登陆成功后在虚拟机根目录下，可看到一个名为 weblogic_data 的文件夹，当在 windows 中的 ./weblogic 目录中放置或更改文件时，这些操作也会同步到虚拟机中的 weblogic_data 文件夹。
+可看到一个名为 weblogic_data 的文件夹，则启动成功。
 
 ## 一些 Vagrant 的基本操作
 
@@ -148,6 +139,8 @@ vagrant destroy
 #销毁当前目录下的 wls1
 vagrant destroy wls1
 ```
+##### 备注：
+例如在使用Xshell登录时，登录虚拟机使用的用户名为 vagrant，在输入密码处使用秘钥登录，秘钥的路径为 ./.vagrant/主机名/private_key。
 
 ## 参考资料
 
