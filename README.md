@@ -24,6 +24,7 @@
 操作系统、网络、密码学这些知识应该是从事计算机相关工作的基础，如果确实某种原因我们没有学好，那我们只能通过一些方式突击学习一下。[10分钟速成课：计算机科学](https://space.bilibili.com/5385034/channel/detail?cid=16059&ctype=0)是一个很棒的系列科普视频，大家有时间可以自己看看，以下是我认为可以优先观看的内容：
 
 * [早期的计算](https://www.bilibili.com/video/BV1EW411u7th?p=1)
+* [电子计算机](https://www.bilibili.com/video/BV1EW411u7th?p=2)
 * [二进制](https://www.bilibili.com/video/BV1EW411u7th?p=4)
 * [操作系统](https://www.bilibili.com/video/BV1EW411u7th?p=18)
 * [文件系统](https://www.bilibili.com/video/BV1EW411u7th?p=20)
