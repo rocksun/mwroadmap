@@ -7,30 +7,29 @@
 
 目录：
 
-- [中间件技术专家之路](#中间件技术专家之路)
-  - [0.basic - 基础知识](#0basic---基础知识)
-  - [1.tx-and-jee - 交易系统与 JEE](#1tx-and-jee---交易系统与-jee)
-  - [2.jee-mw - 各类 JEE 中间件](#2jee-mw---各类-jee-中间件)
-    - [2.1.WebLogic](#21weblogic)
-    - [2.2.WAS](#22was)
-    - [2.3.Tomcat](#23tomcat)
-  - [3.private-mw - 各类非标准的中间件](#3private-mw---各类非标准的中间件)
-    - [3.1.CICS](#31cics)
-    - [3.2.Tuxedo](#32tuxedo)
-  - [4.mq-mw - 各类消息中间件](#4mq-mw---各类消息中间件)
-    - [4.1.WMQ](#41wmq)
+- [0.basic - 基础知识](#0basic---基础知识)
+- [1.tx-and-jee - 交易系统与 JEE](#1tx-and-jee---交易系统与-jee)
+- [2.jee-mw - 各类 JEE 中间件](#2jee-mw---各类-jee-中间件)
+  - [2.1.WebLogic](#21weblogic)
+  - [2.2.WAS](#22was)
+  - [2.3.Tomcat](#23tomcat)
+- [3.private-mw - 各类非标准的中间件](#3private-mw---各类非标准的中间件)
+  - [3.1.CICS](#31cics)
+  - [3.2.Tuxedo](#32tuxedo)
+- [4.mq-mw - 各类消息中间件](#4mq-mw---各类消息中间件)
+  - [4.1.WMQ](#41wmq)
 
 ## 0.basic - 基础知识
 
 操作系统、网络、密码学这些知识应该是从事计算机相关工作的基础，如果确实某种原因我们没有学好，那我们只能通过一些方式突击学习一下。[10分钟速成课：计算机科学](https://space.bilibili.com/5385034/channel/detail?cid=16059&ctype=0)是一个很棒的系列科普视频，大家有时间可以自己看看，以下是我认为可以优先观看的内容：
 
-* [早期的计算](https://www.bilibili.com/video/BV1ux41117nh)
-* [二进制](https://www.bilibili.com/video/BV13x41167PZ)
-* [操作系统](https://www.bilibili.com/video/BV1kW411h7y2)
-* [文件系统](https://www.bilibili.com/video/BV1ZW411h7Wf)
-* [命令行界面](https://www.bilibili.com/video/BV1nW411875k)
-* [计算机网络](https://www.bilibili.com/video/BV1rW411J7dB)
-* [密码学](https://www.bilibili.com/video/BV1dW411p7Hi)
+* [早期的计算](https://www.bilibili.com/video/BV1EW411u7th?p=1)
+* [二进制](https://www.bilibili.com/video/BV1EW411u7th?p=4)
+* [操作系统](https://www.bilibili.com/video/BV1EW411u7th?p=18)
+* [文件系统](https://www.bilibili.com/video/BV1EW411u7th?p=20)
+* [命令行界面](https://www.bilibili.com/video/BV1EW411u7th?p=22)
+* [计算机网络](https://www.bilibili.com/video/BV1EW411u7th?p=28)
+* [密码学](https://www.bilibili.com/video/BV1EW411u7th?p=33)
 
 不过，专业人事看科普其实是丢人的，如果想系统的补课，可以看看[这里](./basic/README.md)推荐的一些书。
 
