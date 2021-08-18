@@ -10,6 +10,7 @@
 * [早期的计算](https://www.bilibili.com/video/BV1ux41117nh)
 * [二进制](https://www.bilibili.com/video/BV13x41167PZ)
 * [操作系统](https://www.bilibili.com/video/BV1kW411h7y2)
+* [文件系统](https://www.bilibili.com/video/BV1ZW411h7Wf)
 * [命令行界面](https://www.bilibili.com/video/BV1nW411875k)
 * [计算机网络](https://www.bilibili.com/video/BV1rW411J7dB)
 * [密码学](https://www.bilibili.com/video/BV1dW411p7Hi)
