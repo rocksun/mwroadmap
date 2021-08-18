@@ -51,6 +51,19 @@
 
 ### 2.1.WebLogic
 
+WebLogic Server 是 Oracle 的一款 JEE 中间件，学习过程可以分为以下几个步骤：
+
+* WebLogic 的基本概念
+* WebLogic 快速上手（实验）
+* WebLogic 日常任务（实验）
+* WebLogic 应用开发（实验） 
+
+如果希望深入的学习 WebLogic 的各个方面可以系统的阅读一下这本书：
+
+* Oracle WebLogic Server 12c Administration Handbook
+* Oracle WebLogic Server 12c Advanced Administration Cookbook
+* Professional Oracle WebLogic Server
+
 ### 2.2.WAS
 
 ### 2.3.Tomcat
@@ -58,6 +71,7 @@
 ## 3.private-mw - 各类非标准的中间件
 
 ### 3.1.CICS
+
 CICS（ Customer Information Control System ）-IBM的交易中间件。详细的学习路径可以参考[这里](./mw/cics/README.md)。
 
 ### 3.2.Tuxedo
