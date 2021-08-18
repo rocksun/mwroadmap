@@ -7,17 +7,18 @@
 
 目录：
 
-- [0.basic - 基础知识](#0basic---基础知识)
-- [1.tx-and-jee - 交易系统与 JEE](#1tx-and-jee---交易系统与-jee)
-- [2.jee-mw - 各类 JEE 中间件](#2jee-mw---各类-jee-中间件)
-  - [2.1.WebLogic](#21weblogic)
-  - [2.2.WAS](#22was)
-  - [2.3.Tomcat](#23tomcat)
-- [3.private-mw - 各类非标准的中间件](#3private-mw---各类非标准的中间件)
-  - [3.1.CICS](#31cics)
-  - [3.2.Tuxedo](#32tuxedo)
-- [4.mq-mw - 各类消息中间件](#4mq-mw---各类消息中间件)
-  - [4.1.WMQ](#41wmq)
+- [中间件技术专家之路](#中间件技术专家之路)
+  - [0.basic - 基础知识](#0basic---基础知识)
+  - [1.tx-and-jee - 交易系统与 JEE](#1tx-and-jee---交易系统与-jee)
+  - [2.jee-mw - 各类 JEE 中间件](#2jee-mw---各类-jee-中间件)
+    - [2.1.WebLogic](#21weblogic)
+    - [2.2.WAS](#22was)
+    - [2.3.Tomcat](#23tomcat)
+  - [3.private-mw - 各类非标准的中间件](#3private-mw---各类非标准的中间件)
+    - [3.1.CICS](#31cics)
+    - [3.2.Tuxedo](#32tuxedo)
+  - [4.mq-mw - 各类消息中间件](#4mq-mw---各类消息中间件)
+    - [4.1.WMQ](#41wmq)
 
 ## 0.basic - 基础知识
 
@@ -53,9 +54,9 @@
 
 WebLogic Server 是 Oracle 的一款 JEE 中间件，学习过程可以分为以下几个步骤：
 
-* WebLogic 的基本概念
-* WebLogic 快速上手（实验）
-* WebLogic 日常任务（实验）
+* [WebLogic 的基本概念](./mw/wls/wls-quickstart.md)
+* [WebLogic 快速上手（实验）](./mw/wls/wls-quickstart.md)
+* [WebLogic 日常任务（实验）](./mw/wls/common-tasks.md)
 * WebLogic 应用开发（实验） 
 
 如果希望深入的学习 WebLogic 的各个方面可以系统的阅读一下这本书：
