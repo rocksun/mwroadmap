@@ -19,7 +19,7 @@ jdk-7u80-linux-x64.tar.gz  linux_silent.xml  wls1036_generic.jar
 解压jdk：
 
 ```shell
-[vagrant@wls2 weblogic_data]$ tar -xf jdk-7u80-linux-x64.tar.gz -C /usr/java/ 
+[vagrant@wls2 weblogic_data]$ sudo tar -xf jdk-7u80-linux-x64.tar.gz -C /usr/java/ 
 ```
 
 静默安装需要指定silent文件，如果没有，可以参考如下:
@@ -28,8 +28,8 @@ jdk-7u80-linux-x64.tar.gz  linux_silent.xml  wls1036_generic.jar
 <?xml version="1.0" encoding="UTF-8"?>
 <bea-installer>
 <input-fields>
-<data-value value="/home/vagrant/Oracle/Middileware" name="BEAHOME"/>
-<data-value value="/home/vagrant/Oracle/Middileware/wlserver_10.3" name="WLS_INSTALL_DIR"/> 
+<data-value value="/home/vagrant/Oracle/Middleware" name="BEAHOME"/>
+<data-value value="/home/vagrant/Oracle/Middleware/wlserver_10.3" name="WLS_INSTALL_DIR"/> 
 <data-value value="WebLogic Server/Core Application Server|WebLogic Server/Administration Console|WebLogic Server/Configuration Wizard and Upgrade Framework|WebLogic Server/Web 2.0 HTTP Pub-Sub Server|WebLogic Server/WebLogic SCA|WebLogic Server/WebLogic JDBC Drivers|WebLogic Server/Third Party JDBC Drivers|WebLogic Server/WebLogic Server Clients|WebLogic Server/WebLogic Web Server Plugins|WebLogic Server/UDDI and Xquery Support|WebLogic Server/Evaluation Database|Oracle Coherence/Coherence Product Files" name="COMPONENT_PATHS"/>
 <data-value value="no" name="INSTALL_NODE_MANAGER_SERVICE"/>
 <data-value value="no" name="INSTALL_SHORTCUT_IN_ALL_USERS_FOLDER"/>
@@ -42,10 +42,10 @@ jdk-7u80-linux-x64.tar.gz  linux_silent.xml  wls1036_generic.jar
 
 ```bash
 [vagrant@wls2 weblogic_data]$ /usr/java/jdk1.7.0_80/bin/java -jar  wls1036_generic.jar   \
-    -mode=silent      \               
-    -silent_xml=linux_silent.xml  \  
-    -log=/tmp/install_weblogic/weblogic_install.log \  
-    -Djava.io.tmpdir=/tmp/install_weblogic   
+    -mode=silent      \
+    -silent_xml=linux_silent.xml  \
+    -log=/tmp/install_weblogic/weblogic_install.log \
+    -Djava.io.tmpdir=/tmp/install_weblogic
 ```
 
 1. 使用jar命令解压wls1036_generic.jar包
@@ -72,18 +72,18 @@ set ServerStartMode "dev";
 find Server "AdminServer" as AdminServer;
 set AdminServer.ListenAddress "";
 set AdminServer.ListenPort "7001";
-set AdminServer.SSL.Enabled "true";
-set AdminServer.SSL.ListenPort "7002";
+//set AdminServer.SSL.Enabled "true";
+//set AdminServer.SSL.ListenPort "7002";
 
 //We can directly create a new managed server.
-create Server "base" as BASE;
+create Server "Server-1" as BASE;
 set BASE.ListenAddress "";
-set BASE.ListenPort "7003";
+set BASE.ListenPort "7002";
 //set BASE.SSL.Enabled "true";
 //set BASE.SSL.ListenPort "7004″;
 
 //Create Machine
-create Machine "base" as Machinename;
+create Machine "Machine0" as Machinename;
 
 //use templates default weblogic user
 find User "weblogic" as u1;
@@ -93,27 +93,26 @@ set u1.password "weblogic123";
 create User "weblogic2" as u2;
 set u2.password "weblogic123";
 
-write domain to "/home/vagrant/Oracle/Middileware/user_projects/domains/base_domain/"; 
+write domain to "/home/vagrant/Oracle/Middleware/user_projects/domains/base_domain/"; 
 
 // The domain name will be "demo-domain"
-close template;
-~                     
+close template;                    
 ```
 
 执行安装静默安装命令:
 
 ```shell
-[vagrant@wls2]$ cd /home/vagrant/Oracle/Middleware/wls/common/bin
+[vagrant@wls2]$ cd /home/vagrant/Oracle/Middleware/wlserver_10.3/common/bin
 [vagrant@wls2 bin]$ ./config.sh \
 -mode=silent \
--silent_script=/home/vagrant/wlserver_10.3/common/create_domain.rsp \
+-silent_script=/home/vagrant/Oracle/Middleware/wlserver_10.3/common/bin/create_domain.rsp \
 -logfile=/tmp/domain_create/create_domain.log
 ```
 
 ## 启动AdminServer
 
 编写AdminServer启动脚本, 
-主要是为了修改JVM的参数, 不建议修改默认脚本, 最好自己编写。
+主要是为了修改JVM的参数, 不建议修改默认脚本, 最好自己编写：
 
 ```shell
 #!/bin/sh
@@ -123,6 +122,12 @@ export DERBY_FLAG=false
 
 export USER_MEM_ARGS="-Xms512m -Xmx512m -Djava.security.egd=file:/dev/./urandom"
 nohup ${ABSBINPATH}/startWebLogic.sh AdminServer http://172.16.0.151:7001>${ABSBINPATH}/../servers/AdminServer/logs/nohup.out 2>&1 &
+```
+
+浏览器输入网址验证时，需要关闭服务器的防火墙: 
+
+```shell
+systemctl disable firewalld --now 
 ```
 
 # 部署应用到 Admin
