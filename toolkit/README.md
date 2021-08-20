@@ -8,6 +8,7 @@
 - [环境搭建](#环境搭建)
   - [Vagrant - 虚拟机管理](#vagrant---虚拟机管理)
   - [Kubernetes Desktop - 搭建 k8s 环境](#kubernetes-desktop---搭建-k8s-环境)
+  - [Scoop - Windows 的包管理工具](#scoop---windows-的包管理工具)
 - [虚拟机](#虚拟机)
   - [Memory Analyzer](#memory-analyzer)
 
@@ -41,6 +42,10 @@ Vagrant 可以帮助我们快速搭建虚拟机环境，免去了安装虚拟机
 ### Kubernetes Desktop - 搭建 k8s 环境
 
 Windows 下 Kubernetes Desktop 是一个快速尝试 Kubernetes 的好工具，不过安装过程中可能会有一些问题，可以看这个[视频](https://www.bilibili.com/video/BV1s7411f78L/)。
+
+### Scoop - Windows 的包管理工具
+
+Linux 和 Mac 下都有很棒的命令行包管理工具，许多工具可以实现一键安装。Windows 下可以用 [Scoop](https://scoop.sh/) 来实现相同的功能。比较傻瓜，如果不会，可以参考这个[视频](https://www.bilibili.com/video/BV1Y741117Bg)。
 
 ## 虚拟机
 
