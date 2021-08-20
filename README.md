@@ -45,6 +45,7 @@
 
 * [Principles of Transaction Processing（书）](https://book.douban.com/subject/3734011/)
 * [计算机简史(书)](https://book.douban.com/subject/35043034/)
+* [编码的奥秘](https://book.douban.com/subject/1024570/)
 
 《计算机简史》虽然是讲故事为主，但是从中可以看到早期计算机的发展，计算机解决的业务问题，可以为你提供一个更朴素的视角。
 
