@@ -1,13 +1,13 @@
 # WebLogic 快速入门
 
-实验需要 Red Hat Enterprise Linux 7 环境 , 如果没有环境, 可以参考本资料。
-[下载地址]()
+实验需要两个 Red Hat Enterprise Linux 7 虚拟机，分别为 wls1 和 wls2 , 如果没有环境, 可以参考此[文档](../../toolkit/env/create-vms-with-vagrant-and-virtualbox.md)。
 
-wls版本 ，下载地址
+* WebLogic 版本：TODO
+* JDK 版本： TODO
 
 ## 静默安装
 
-首先将jdk，WebLogic安装包导入系统：
+首先是准备 JDK，WebLogic 介质（如果使用前面的方式部署环境，宿主机的 weblogic 目录会映射到虚拟机的 weblogic_data）：
 
 ```bash
 [vagrant@wls2 weblogic_data]$ pwd
@@ -16,13 +16,13 @@ wls版本 ，下载地址
 jdk-7u80-linux-x64.tar.gz  linux_silent.xml  wls1036_generic.jar
 ```
 
-解压jdk：
+解压 JDK：
 
 ```shell
 [vagrant@wls2 weblogic_data]$ sudo tar -xf jdk-7u80-linux-x64.tar.gz -C /usr/java/ 
 ```
 
-静默安装需要指定silent文件，如果没有，可以参考如下:
+静默安装需要创建 silent.xml 文件:
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -38,7 +38,7 @@ jdk-7u80-linux-x64.tar.gz  linux_silent.xml  wls1036_generic.jar
 </bea-installer>
 ```
 
-开始安装，可以通过指定的安装日志查看安装结果, 以最后的successful为准：
+根据情况修改 BEAHOME，WLS_INSTALL_DIR 和 LOCAL_JVMS。然后开始安装，可以通过指定的安装日志查看安装结果：
 
 ```bash
 [vagrant@wls2 weblogic_data]$ /usr/java/jdk1.7.0_80/bin/java -jar  wls1036_generic.jar   \
@@ -48,21 +48,22 @@ jdk-7u80-linux-x64.tar.gz  linux_silent.xml  wls1036_generic.jar
     -Djava.io.tmpdir=/tmp/install_weblogic
 ```
 
-1. 使用jar命令解压wls1036_generic.jar包
-2. -mode: 指定安装模式为silent, 默认为console
-3. -silent_xml: 指定silent_xml文件路径
-4. -log: 指定安装时输出日志的存放位置
-5. -Djava.io.tmpdir: 在Unix/Linux平台上，如果提示临时空间不足，可以加上-Djava.io.tmpdir=tmpdirpath指定一块区域做临时空间
+其他说明：
+
+* -mode: 指定安装模式为silent, 默认为console
+* -silent_xml: 指定silent_xml文件路径
+* -log: 指定安装时输出日志的存放位置
+* -Djava.io.tmpdir: 在Unix/Linux平台上，如果提示临时空间不足，可以加上-Djava.io.tmpdir=tmpdirpath指定一块区域做临时空间
 
 ## 创建域
 
-使用静默方式创建域, 首先需要创建域目录(emptydir)：
+使用静默方式创建域, 首先需要创建域目录：
 
 ```shell
 mkdir -p /home/vagrant/Oracle/Middleware/user_projects/domains/base_domain/
 ```
 
-静默方式创建域，需要指定rsp格式的silent文件，可以参考如：
+静默方式创建域，需要指定rsp格式的silent文件，可以参考如 TODO： 这是 rsp 文件？：
 
 ```shell
 read template from "/home/vagrant/Oracle/Middleware/wlserver_10.3/common/templates/domains/wls.jar";
