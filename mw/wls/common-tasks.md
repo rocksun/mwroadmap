@@ -35,11 +35,11 @@ Machine-1	192.168.226.130		5556		as2
 1. 使用 root 用户登录后使用 #su weblogic 将用户切换到 weblogic 用户
 2. 使用 cd 命令进入到 weblogic 安装目录的 /common/bin 下， ls 找到 config.sh 文件，使用 ./config.sh 命令执行 weblogic 服务域配置启动文件，启动文件初始化成功后，
 3. 选择 "Create a new weblogic domain" ,创建一个新的服务域，Next 回车
-4. 选择创建域的类型这里我们选择 "Choose Weblogic Platform components" 生成一个自动配置的域以支持下列产品，输入1回车(或 next 回车)
+4. 选择创建域的类型这里我们选择 "Choose Weblogic Platform components" 生成一个自动配置的域以支持下列产品，输入"1"回车(或 next 回车)
 5. 选择应用模板类型，直接 next 回车
 6. 指定 domin 域的名称， 使用默认值或者输入域名称，next 回车
 7. 指定 domin 域的存储路径，使用默认值或者输入存储路径，next 回车
-8. 设置 weblogic 用户密码，用于登录 weblogic 控制台，输入2，设置登录密码，next 回车，回到设置用户名和密码界面，输入3，确认用户密码，next 回车，回到设置用户名和密码界面，
+8. 设置 weblogic 用户密码，用于登录 weblogic 控制台，输入"2"，设置登录密码，next 回车，回到设置用户名和密码界面，输入"3"，确认用户密码，next 回车，回到设置用户名和密码界面，
 注：密码长度必须大于8位，且必须包含数字类型，若输入的密码信息不符合规则，则返回错误的提示信息：
 
  ```powershell
@@ -56,7 +56,7 @@ Machine-1	192.168.226.130		5556		as2
  
 10.  绑定jdk
     - 绑定默认jdk版本
-    - 绑定自己安装的jdk版本：选择2，输入自己安装的JDK路径回车，next回车
+    - 绑定自己安装的jdk版本：选择"2"，输入自己安装的JDK路径回车，next回车
 
  ```powershell
     ->1|Sun SDK 1.7.0_80 @ /weblogic/jdk1.7.0_80
