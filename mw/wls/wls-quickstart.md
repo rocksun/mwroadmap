@@ -2,8 +2,26 @@
 
 实验需要两个 Red Hat Enterprise Linux 7 虚拟机，分别为 wls1 和 wls2 , 如果没有环境, 可以参考此[文档](../../toolkit/env/create-vms-with-vagrant-and-virtualbox.md)。
 
-* WebLogic 版本：TODO
-* JDK 版本： TODO
+<table>
+    <tr>
+      <td>主机名</td>
+      <td>IP</td>
+      <td>角色</td>
+    </tr>
+    <tr>
+      <td>wls1</td>
+      <td>172.16.0.151</td>
+      <td>AdminServer</td>
+    </tr>
+        <tr>
+      <td>wls2</td>
+      <td>172.16.0.152</td>
+      <td>ManagedServer</td>
+    </tr>
+</table>
+
+* WebLogic 版本：wlserver_10.3.6
+* JDK 版本： jdk1.7.0_80
 
 ## 静默安装
 
@@ -63,42 +81,36 @@ jdk-7u80-linux-x64.tar.gz  linux_silent.xml  wls1036_generic.jar
 mkdir -p /home/vagrant/Oracle/Middleware/user_projects/domains/base_domain/
 ```
 
-静默方式创建域，需要指定rsp格式的silent文件，可以参考如 TODO： 这是 rsp 文件？：
+静默建域需要指定 silent.rsp 文件:
+可以参考 [WebLogic 静默建域官方文档](https://docs.oracle.com/cd/E13196_01/platform/docs81/confgwiz/silent.html#1043185)：
 
 ```shell
-read template from "/home/vagrant/Oracle/Middleware/wlserver_10.3/common/templates/domains/wls.jar";
-
-set JavaHome "/usr/java/jdk1.7.0_80";
-set ServerStartMode "dev";
+read template from "/home/weblogic/oracle/wlserver/common/templates/wls/wls.jar";
+set JavaHome "/usr/local/jdk1.7.0_80";
+set ServerStartMode "prod";
 find Server "AdminServer" as AdminServer;
 set AdminServer.ListenAddress "";
 set AdminServer.ListenPort "7001";
-//set AdminServer.SSL.Enabled "true";
-//set AdminServer.SSL.ListenPort "7002";
-
-//We can directly create a new managed server.
+create Cluster "Cluster-0" as Clustername1;
+create Machine "machine-1" as Machinename1;
 create Server "Server-1" as BASE;
 set BASE.ListenAddress "";
-set BASE.ListenPort "7002";
-//set BASE.SSL.Enabled "true";
-//set BASE.SSL.ListenPort "7004″;
+set BASE.ListenPort "8001";
+set BASE.cluster "Cluster-0";
+set BASE.machine "machine-1";
+create Server "Server-2" as BASE2;
+set BASE2.ListenAddress "";
+set BASE2.ListenPort "8002";
+set BASE2.cluster "Cluster-0";
+set BASE2.machine "machine-1";
+find User "weblogic" as weblogic;
+set weblogic.password "weblogic123";
+write domain to "/home/weblogic/oracle/user_projects/domains/test_domain/";
+close template;
+                 
+``` 
 
-//Create Machine
-create Machine "Machine0" as Machinename;
-
-//use templates default weblogic user
-find User "weblogic" as u1;
-set u1.password "weblogic123";
-
-//create a new user
-create User "weblogic2" as u2;
-set u2.password "weblogic123";
-
-write domain to "/home/vagrant/Oracle/Middleware/user_projects/domains/base_domain/"; 
-
-// The domain name will be "demo-domain"
-close template;                    
-```
+ 要按照实际环境填写响应文件，如果响应文件编写的有问题，是无法成功建域的。
 
 执行安装静默安装命令:
 
@@ -112,8 +124,7 @@ close template;
 
 ## 启动AdminServer
 
-编写AdminServer启动脚本, 
-主要是为了修改JVM的参数, 不建议修改默认脚本, 最好自己编写：
+编写AdminServer启动脚本，主要是为了修改JVM的启动参数, 不建议修改默认脚本, 最好自己编写：
 
 ```shell
 #!/bin/sh
@@ -125,10 +136,28 @@ export USER_MEM_ARGS="-Xms512m -Xmx512m -Djava.security.egd=file:/dev/./urandom"
 nohup ${ABSBINPATH}/startWebLogic.sh AdminServer http://172.16.0.151:7001>${ABSBINPATH}/../servers/AdminServer/logs/nohup.out 2>&1 &
 ```
 
-浏览器输入网址验证时，需要关闭服务器的防火墙: 
+WebLogic服务启动时，需要交互式输入用户名密码。使用脚本启动时可以在对应的服务目录下创建security文件夹，编写存放用户名和密码的boot.properties文件:
 
 ```shell
-systemctl disable firewalld --now 
+[vagrant@wls1 servers]$ cd AdminServer/
+[vagrant@wls1 AdminServer]$ pwd
+/home/vagrant/Oracle/Middleware/user_projects/domains/base_domain/servers/AdminServer
+[vagrant@wls1 AdminServer]$ ls
+  security
+[vagrant@wls1 AdminServer]$ vim security/boot.properties
+  username=weblogic
+  password=weblogic123
+```
+
+`服务启动时会自动加载boot.properties文件,不用手动输入用户名密码。`
+
+执行启动脚本，查看服务启动状态:
+   - 通过netstat命令查看对应端口。
+   - 浏览器输入网址验证，需要关闭服务器的防火墙: 
+
+```shell
+[vagrant@wls1 ~]$ netstat -ntulp | grep :7001
+[vagrant@wls1 ~]$ systemctl disable firewalld --now 
 ```
 
 # 部署应用到 Admin
