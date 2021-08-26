@@ -82,5 +82,5 @@ CICS（ Customer Information Control System ）-IBM的交易中间件。详细�
 
 ### 4.1.WMQ
 
-MQ 是一种消息中间件，详细的学习路径可以参考[这里](./mw/wmq/README.md)。
+WMQ 是一种消息中间件，详细的学习路径可以参考[这里](./mw/wmq/README.md)。
 
