@@ -1,34 +1,40 @@
 # WebLogic 快速入门
 
-实验需要两个 Red Hat Enterprise Linux 7 虚拟机，分别为 wls1 和 wls2 , 如果没有环境, 可以参考此[文档](../../toolkit/env/create-vms-with-vagrant-and-virtualbox.md)。
+## 环境准备
 
-主机名|IP|角色
-:-: | :-: | :-:
-wls1|172.16.0.151|AdminServer
+| 主机名 |      IP      |    角色     |
+| :----: | :----------: | :---------: |
+|  wls1  | 172.16.0.151 | AdminServer |
 
-* WebLogic 版本：wlserver_10.3.6  [下载地址](http://www.oracle.com/technetwork/middleware/weblogic/downloads/wls-for-dev-1703574.html)
-  
-* JDK 版本： jdk1.7.0_80  [下载地址](https://www.oracle.com/java/technologies/javase/javase7-archive-downloads.html#jdk-7u80-oth-JPR)
+实验需要一个 Red Hat Enterprise Linux 7 虚拟机，名称为 wls1 , 如果没有环境, 可以参考此[文档](../../toolkit/env/create-vms-with-vagrant-and-virtualbox.md)。
 
-## 静默安装
+## 准备介质
 
-首先是准备 JDK，WebLogic 介质（如果使用前面的方式部署环境，宿主机的 weblogic 目录会映射到虚拟机的 weblogic_data）：
+本实验使用 WebLogic10.3.6 版本，可以到[WebLogic的下载页面](http://www.oracle.com/technetwork/middleware/weblogic/downloads/wls-for-dev-1703574.html)下找到版本10.3.6下的 Generic 。对应的 JDK 版本为 jdk1.7 ，可以到[JDK的下载页面](https://www.oracle.com/java/technologies/javase/javase7-archive-downloads.html#jdk-7u80-oth-JPR)中下载 jdk-7u80-linux-x64.tar.gz 。
+
+如果使用前面的方式部署环境，宿主机的 weblogic 目录会映射到虚拟机的 weblogic_data， 把之前下载的介质放到 weblogic 目录下, 到虚拟机中可以看到:
 
 ```bash
 [vagrant@wls2 weblogic_data]$ pwd
 /weblogic_data
 [vagrant@wls2 weblogic_data]$ ls
-jdk-7u80-linux-x64.tar.gz  linux_silent.xml  wls1036_generic.jar
+jdk-7u80-linux-x64.tar.gz   wls1036_generic.jar
 ```
 
-解压 JDK：
+## 安装 WebLogic
+
+### 解压 JDK
+
+这里将下载好的 JDK 解压到 /usr/java/ 目录下:
 
 ```shell
 [vagrant@wls2 weblogic_data]$ sudo mkdir /usr/java
 [vagrant@wls2 weblogic_data]$ sudo tar -xf jdk-7u80-linux-x64.tar.gz -C /usr/java/ 
 ```
 
-静默安装需要创建 silent.xml 文件:
+### 静默安装
+
+WebLogic 的静默安装方式，需要准备一个 silent.xml 文件，内容如下：
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -44,7 +50,7 @@ jdk-7u80-linux-x64.tar.gz  linux_silent.xml  wls1036_generic.jar
 </bea-installer>
 ```
 
-根据情况修改 BEAHOME，WLS_INSTALL_DIR 和 LOCAL_JVMS。然后开始安装，可以通过指定的安装日志查看安装结果：
+根据情况修改 BEAHOME，WLS_INSTALL_DIR 和 LOCAL_JVMS。然后开始安装：
 
 ```bash
 [vagrant@wls2 weblogic_data]$ /usr/java/jdk1.7.0_80/bin/java -jar  wls1036_generic.jar   \
@@ -54,12 +60,14 @@ jdk-7u80-linux-x64.tar.gz  linux_silent.xml  wls1036_generic.jar
     -Djava.io.tmpdir=/tmp/install_weblogic
 ```
 
-其他说明：
+参数说明：
 
 * -mode: 指定安装模式为silent, 默认为console
 * -silent_xml: 指定silent_xml文件路径
 * -log: 指定安装时输出日志的存放位置
 * -Djava.io.tmpdir: 在Unix/Linux平台上，如果提示临时空间不足，可以加上-Djava.io.tmpdir=tmpdirpath指定一块区域做临时空间
+  
+如果命令执行后有报错信息，可以通过指定的 /tmp/install_weblogic/weblogic_install.log 查看安装日志，查看详细的安装失败原因。
 
 ## 创建域
 
@@ -67,10 +75,9 @@ jdk-7u80-linux-x64.tar.gz  linux_silent.xml  wls1036_generic.jar
 
 ```shell
 [vagrant@wls1 ~]$ mkdir -p /home/vagrant/Oracle/Middleware/user_projects/domains/base_domain/
-[vagrant@wls1 ~]$ 
 ```
 
-静默建域需要指定 silent.rsp 文件，可以参考 [WebLogic 静默建域官方文档](https://docs.oracle.com/cd/E13196_01/platform/docs81/confgwiz/silent.html#1043185)：
+静默建域需要指定 silent.rsp 文件，内容如下：
 
 ```shell
 read template from "/home/vagrant/Oracle/Middleware/wlserver_10.3/common/templates/domains/wls.jar";
@@ -85,7 +92,7 @@ write domain to "/home/vagrant/Oracle/Middleware/user_projects/domains/base_doma
 close template;      
 ``` 
 
-其他说明: 
+参数说明: 
 
 * JavaHome： JDK的安装路径
 * ServerStartMode： 服务启动时的模式，prod是生产模式
@@ -94,7 +101,7 @@ close template;
 * 创建用户weblogic，密码为weblogic123
 * write domain to: 创建的域路径
   
-要按照实际环境填写响应文件，如果响应文件编写的有问题，是无法成功建域的，执行安装静默安装命令:
+根据实际环境修改响应文件，更多参数请参考 [WebLogic 静默建域官方文档](https://docs.oracle.com/cd/E13196_01/platform/docs81/confgwiz/silent.html#1043185)，然后可以执行静默安装命令:
 
 ```shell
 [vagrant@wls2]$ cd /home/vagrant/Oracle/Middleware/wlserver_10.3/common/bin
@@ -106,71 +113,59 @@ close template;
 
 ## 启动AdminServer
 
-AdminServer默认的启动脚本在域目录下：
+AdminServer 默认的启动脚本在域目录的 bin 下，在我们的环境里路径为 `/home/vagrant/Oracle/Middleware/user_projects/domains/base_domain/bin`。
 
-```shell
-[vagrant@wls1 base_domain]$ pwd
-/home/vagrant/Oracle/Middleware/user_projects/domains/base_domain
-[vagrant@wls1 base_domain]$ ls
-autodeploy  config       fileRealm.properties  lib    security  
-bin         console-ext  init-info             startWebLogic.sh
-```
-
-创建AdminServer的启动目录，AdminServer启动时，需要交互式输入用户名密码。如果想使用脚本启动可以在对应的服务目录下创建 security 文件夹，编写存放用户名和密码的 boot.properties 文件：
+服务启动时，需要交互式输入用户名密码，为了不用每次都手动输入，可以编写 boot.properties 文件。服务启动时会自动加载文件中的用户名和密码：
 
 ```shell
 [vagrant@wls1 base_domain]$ mkdir -p servers/AdminServer/security
 [vagrant@wls1 base_domain]$ cd servers/AdminServer/security/
-[vagrant@wls1 security]$ touch boot.properties
-```
-
-boot.properties 文件存放 AdminServer 登录的用户名密码即可，服务启动时会自动加载boot.properties文件,不用手动输入用户名密码：
-
-```shell
+[vagrant@wls1 security]$ cat > ./boot.properties <<EOF 
 username=weblogic
 password=weblogic123
+EOF
 ```
 
-可以在domains目录下编写启动脚本，主要是为了修改JVM的启动参数, 不建议修改默认脚本, 最好自己编写：
+在`/home/vagrant/Oracle/Middleware/user_projects/domains/base_domain/bin`目录下编写启动脚本，主要是为了修改JVM的启动参数, 不建议修改domain自动创建的脚本, 最好自己编写：
 
 ```shell
-[vagrant@wls1 base_domain]$ vim startAdmin.sh
+[vagrant@wls1 bin]$ cat > startAdmin.sh <<EOF
 #!/bin/sh
 ABSBINPATH=$(cd "$(dirname "$0")"; pwd)
 export ABSBINPATH
 export DERBY_FLAG=false
-
 export USER_MEM_ARGS="-Xms512m -Xmx512m -Djava.security.egd=file:/dev/./urandom"
 nohup ${ABSBINPATH}/startWebLogic.sh  http://172.16.0.151:7001>${ABSBINPATH}/../servers/AdminServer/logs/nohup.out 2>&1 &
+EOF
 ```
 
-执行启动脚本，启动成功后日志中会提示`Server started in RUNNING mode`：
+执行启动脚本，可以到AdminServer下的 logs 目录中查看日志，启动成功后日志中会提示`Server started in RUNNING mode`：
 
 ```shell
-[vagrant@wls1 base_domain]$ vim startAdmin.sh
 [vagrant@wls1 base_domain]$ tail -f servers/AdminServer/logs/nohup.out
 ```
 
-通过netstat命令查看对应端口:
+通过 netstat 命令查看对应端口，确保端口已监听:
 
 ```shell
 [vagrant@wls1 ~]$ netstat -ntulp | grep :7001
 ```
 
-浏览器输入网址验证，需要关闭服务器的防火墙: 
-
+为了保证能在浏览器中访问到控制台，需要关闭防火墙:
 ```shell
-[vagrant@wls1 ~]$ systemctl disable firewalld --now 
+[vagrant@wls1 ~]$ sudo systemctl disable firewalld --now 
 ```
+
+然后可以在宿主机的浏览登录控制台 `http://172.16.0.151:7001` ，登录用户名密码为创建 domain 时设置的用户名密码。
+
 
 # 部署应用到 AdminServer
 
-将写好的[war包](可以用自己写的做测试)上传到域文件目录下:
+登录到 WebLogic 控制台，点击左上角的锁定并编辑， 依次点击左侧的部署 -> 安装 -> 上传文件，选择war包loginweb.war（下载链接见后边说明），点击将此安装部署为应用，下一步 -> 下一步 -> 完成 ，再点击左上角的保存并激活配置。返回控制台的部署界面查看，如果应用状态为 `ACTIVE` 表示部署成功。
 
-```shell
-[vagrant@wls2 bin]$ mv ./loginweb.war  ~/Oracle/Middileware/user_projects/domains/base_domain/
-[vagrant@wls2 bin]$ cd ~/Oracle/Middileware/user_projects/domains/base_domain/
-[vagrant@wls2 base_domain]$ sudo ./startWebLogic.sh
-```
+部署应用成功后，可以直接输入控制台IP加页面名称进行访问，在我们的环境里，访问地址为: http://172.16.0.151:7001/loginweb。
+部署失败的话可以到`/home/vagrant/Oracle/Middleware/user_projects/domains/base_domain/servers/AdminServer/logs/`下查看AdminServer的日志，确定具体的报错信息。
 
-将 war 包上传到域目录下，登录到 WebLogic 控制台，点击 base_domain 中的部署 (生产模式需要点击锁定并编辑)，部署操作完成后一定要激活所有配置。部署完成后可以输入网址测试，比如本文中的测试地址为: http://172.16.0.151:7001/loginweb
+分享文章中测试用的war包，如果没有可以下载使用。
+百度网盘链接: https://pan.baidu.com/s/1vr8hxVxjbFrnHdndfy0G2A 
+提取码: 4ind
