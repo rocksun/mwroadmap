@@ -38,14 +38,14 @@
 
 了解 IT 系统的架构，历史背景，对我们工作的意义。
 
-* [理解交易系统（待补充）]()
-* [JEE 入门（待补充）]()
+* 理解交易系统(见“相关资料下载”中的 PPT)
+* JEE 介绍(见“相关资料下载”中的 PPT)
 
 如果需要对这个话题有更深的认识，可以参考：
 
 * [Principles of Transaction Processing（书）](https://book.douban.com/subject/3734011/)
 * [计算机简史(书)](https://book.douban.com/subject/35043034/)
-* [编码的奥秘](https://book.douban.com/subject/1024570/)
+
 
 《计算机简史》虽然是讲故事为主，但是从中可以看到早期计算机的发展，计算机解决的业务问题，可以为你提供一个更朴素的视角。
 
@@ -57,8 +57,9 @@ WebLogic Server 是 Oracle 的一款 JEE 中间件，学习过程可以分为以
 
 * [WebLogic 的基本概念](./mw/wls/wls-quickstart.md)
 * [WebLogic 快速上手（实验）](./mw/wls/wls-quickstart.md)
+* [WebLogic 应用开发（实验）](./mw/wls/jee-dev.md)
 * [WebLogic 日常任务（实验）](./mw/wls/common-tasks.md)
-* WebLogic 应用开发（实验） 
+
 
 如果希望深入的学习 WebLogic 的各个方面可以系统的阅读一下这本书：
 

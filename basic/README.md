@@ -5,6 +5,7 @@
 * [深入理解计算机系统（CSAPP）（书）](https://book.douban.com/subject/5333562/)
 * [网络是怎样连接的（书）](https://book.douban.com/subject/26941639/)
 * [程序是怎样跑起来的（书）](https://book.douban.com/subject/26365491/)
+* [编码的奥秘](https://book.douban.com/subject/1024570/)
 * Linux 基础操作（待补充）
 
 《深入理解计算机系统（CSAPP）》可能对于有些人太难了，可以看简化版的《程序是怎样跑起来的》。
