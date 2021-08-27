@@ -62,13 +62,17 @@
 
 #### 初始化 server 目录
 
+初始化 server 目录这一部分在 linux wls1 和 wls2 两台主机上分别进行操作。
+
+AdminServer 和 server01 的操作在 wls1 主机上进行，server02 的操作在 wls2 的主机上进行
+
 AdminServer 初始化目录以及创建启动脚本请参考[文档](./wls-quickstart.md#启动AdminServer)
 
 进入到域目录下的 servers 文件夹中，创建与 server 的同名文件夹如“server01”（如果存在多个 server，则创建多个文件夹并分别执行下面的操作）并进入其中，创建文件夹“security”与文件夹“logs”
 
 ```shell
-[vagrant@wls1 base_domain]$ mkdir -p servers/AdminServer/security
-[vagrant@wls1 base_domain]$ cd servers/AdminServer/security/
+[vagrant@wls1 base_domain]$ mkdir -p servers/server01/security
+[vagrant@wls1 base_domain]$ cd servers/server01/security/
 ```
 
 进入创建好的“security”，在其中创建并编辑“boot.properties”文件，编辑内容为：
@@ -106,7 +110,7 @@ EOF
 [vagrant@wls1 ~]$ netstat -ntlp | grep :7001
 ```
 
-初始化 server02 目录，操作步骤与 server01 相同，只需要更改一下 server 名称和日志的目录
+初始化 server02 的目录操作步骤与 server01 相同，但是需要更改一下启动脚本中的 server 名称和日志的目录
 
 
 
