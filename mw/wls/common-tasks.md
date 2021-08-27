@@ -12,6 +12,8 @@
   - [Java配置](#java配置)
   - [Weblogic配置信息](#weblogic配置信息)
   - [控制台](#控制台)
+
+
 本文的介绍需要在 weblogic10.3.6 的环境上才可以执行，如果没有环境，可以参考[文档](./wls-quickstart.md)。
 
 
