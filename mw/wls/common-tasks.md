@@ -52,30 +52,28 @@
 
 #### 创建集群配置
 
-进入控制台，点击“锁定并编辑”，然后点击左侧域结构中的“集群”，点击“新建”，”名称“中输入 cluster01 ，其他的默认，点击完成。
+进入控制台，点击“锁定并编辑”，然后点击左侧域结构中的“集群”，点击“新建”，“名称”中输入 cluster01 ，其他的默认，点击完成。
 
-点击新建好的集群，点击”服务器“，点击”添加“，然后选择”创建新服务器并将其添加到此集群“，点击”下一步“，服务器名称输入 server01，服务器监听地址输入 172.16.0.151，服务器监听端口输入 8001 ，点击完成。
+点击新建好的集群，点击“服务器”，点击“添加”，然后选择“创建新服务器并将其添加到此集群”，点击“下一步”，服务器名称输入 server01 ，服务器监听地址输入 172.16.0.151，服务器监听端口输入 8001 ，点击完成。
 
 然后按照上一段的步骤，再添加 server02，地址和监听端口分别为 172.16.0.152 和 8002。
 
-然后点击”激活更改“。
+然后点击“激活更改”。
 
 #### 初始化 server 目录
 
-初始化 server 目录这一部分在 linux wls1 和 wls2 两台主机上分别进行操作。
+在创建启动脚本前要做些准备。在服务器的目录下创建 security 和 logs 文件夹，在 security 中配置 weblogic 的账号密码，如果不提前配置好直接创建启动脚本启动会报错并启动失败。
 
-AdminServer 和 server01 的操作在 wls1 主机上进行，server02 的操作在 wls2 的主机上进行
+AdminServer 初始化目录以及创建启动脚本请参考[文档](./wls-quickstart.md#启动AdminServer)，以下为 server01。
 
-AdminServer 初始化目录以及创建启动脚本请参考[文档](./wls-quickstart.md#启动AdminServer)，
-
-进入到域目录下的 servers 文件夹中，创建与 server 的同名文件夹如“server01”（如果存在多个 server，则创建多个文件夹并分别执行下面的操作）并进入其中，创建文件夹“security”与文件夹“logs”
+进入到域目录下的 servers 文件夹中，创建与 server 的同名文件夹“server01”并进入其中，创建文件夹“security”与文件夹“logs”：
 
 ```shell
-[vagrant@wls1 base_domain]$ mkdir -p servers/server01/security
-[vagrant@wls1 base_domain]$ cd servers/server01/security/
+[vagrant@wls1 sample_domain]$ mkdir -p servers/server01/security
+[vagrant@wls1 sample_domain]$ cd servers/server01/security/
 ```
 
-进入创建好的“security”，在其中创建并编辑“boot.properties”文件，编辑内容为：
+进入创建好的“security”，通过以下内容创建并编辑“boot.properties”文件：
 
 ```shell
 [vagrant@wls1 security]$ cat > ./boot.properties <<EOF 
@@ -84,8 +82,7 @@ password=weblogic123
 EOF
 ```
 
-创建启动脚本
-创建“server01”的启动脚本，进入域目录的“bin”目录下创建并编辑“start_server01.sh”文件编辑内容为：
+创建“server01”的启动脚本。进入到域目录的“bin”目录，通过以下内容创建并编辑脚本“start_server01.sh”：
 
 ```shell
 [vagrant@wls1 bin]$ cat > start_server01.sh <<EOF
@@ -98,19 +95,14 @@ nohup ${ABSBINPATH}/startManagedWebLogic.sh server01 http://172.16.0.151:7001>${
 EOF
 ```
 
-执行启动脚本，可以到 server01 下的 logs 目录中查看日志，启动成功后日志中会提示`Server started in RUNNING mode`：
+执行启动脚本，可以先查看 serve01 服务的进程是否存在，然后到 server01 下的 logs 目录中查看日志，如果启动成功，日志中会提示`Server started in RUNNING mode`：
 
 ```shell
-[vagrant@wls1 base_domain]$ tail -f servers/server01/logs/nohup.out
+[vagrant@wls1 sample_domain]$ tail -f servers/server01/logs/nohup.out
 ```
 
-通过 netstat 命令查看对应端口，确保端口已监听：
 
-```shell
-[vagrant@wls1 ~]$ netstat -ntlp | grep :7001
-```
-
-初始化 server02 的目录操作步骤与 server01 相同，但是需要更改一下启动脚本中的 server 名称和日志的目录
+初始化 server02 的目录操作步骤与 server01 相同，但是需要更改一下启动脚本中的 server 名称和日志的目录。
 
 
 
