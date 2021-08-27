@@ -28,7 +28,7 @@
 
 ## 部署集群
 
-部署一个包含2个受管理服务器的集群，收官服务器分别在不同的2个计算机上。
+部署一个包含 2 个受管理服务器的集群，受管服务器分别在不同的 2 个计算机上。
 
 ### 环境概述
 
@@ -66,7 +66,7 @@
 
 AdminServer 和 server01 的操作在 wls1 主机上进行，server02 的操作在 wls2 的主机上进行
 
-AdminServer 初始化目录以及创建启动脚本请参考[文档](./wls-quickstart.md#启动AdminServer)
+AdminServer 初始化目录以及创建启动脚本请参考[文档](./wls-quickstart.md#启动AdminServer)，
 
 进入到域目录下的 servers 文件夹中，创建与 server 的同名文件夹如“server01”（如果存在多个 server，则创建多个文件夹并分别执行下面的操作）并进入其中，创建文件夹“security”与文件夹“logs”
 
