@@ -58,7 +58,7 @@
 
 #### 初始化 server 目录
 
-AdminServer 初始化目录以及创建启动脚本请参考[文档-启动AdminServer](./wls-quickstart.md#启动AdminServer)
+AdminServer 初始化目录以及创建启动脚本请参考[文档](./wls-quickstart.md#启动AdminServer)
 
 进入到域目录下的 servers 文件夹中，创建与 server 的同名文件夹如“server01”（如果存在多个 server，则创建多个文件夹并分别执行下面的操作）并进入其中，创建文件夹“security”与文件夹“logs”
 
@@ -102,7 +102,7 @@ EOF
 [vagrant@wls1 ~]$ netstat -ntlp | grep :7001
 ```
 
-初始化 server02 目录，操作步骤与 server01 相同，在创建启动脚本时更改对应的 server 名称、ip 地址、和后台运行时日志的路径。
+初始化 server02 目录，操作步骤与 server01 相同，只需要更改一下 server 名称和日志的目录
 
 
 
