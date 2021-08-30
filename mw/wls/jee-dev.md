@@ -60,8 +60,7 @@
 </body>
 </html>
 ```
-form 中 action 属性规定了当提交表单时，数据要发送到哪里 。 method 属性规定了以什么方式提交表单 get 或 post (默认是 get )，详细可以查看[get 和 post 区别](#get-和-post-区别)。 
-
+form 中 action 属性规定了当提交表单时，数据要发送到哪里 。 method 属性规定了以什么方式提交表单 get 或 post (默认是 get )。
 ## 创建 Servlet
 
 1. 右键项目，New -> Servelet 
@@ -85,7 +84,7 @@ protected void doPost(HttpServletRequest request, HttpServletResponse response) 
                 request.getSession().setAttribute("user", user);
                 response.sendRedirect("index.jsp");
             //  RequestDispatcher  disp  =  request.getRequestDispatcher("index.jsp");
-                disp.forward(request,  response);
+            //  disp.forward(request,  response);
         }else{
                 response.sendRedirect("login.jsp");
             //  RequestDispatcher  disp  =  request.getRequestDispatcher("login.jsp");
@@ -94,11 +93,9 @@ protected void doPost(HttpServletRequest request, HttpServletResponse response) 
 }
 ```
 
-该段代码中的 sendRedirect 和 forward 方法都可以实现页面的跳转， 两种方法的具体功能和区别，可以查看[sendRedirect 和 forward 的区别](#sendredirect-和-forward-的区别)。
-
 ## LoginServelet 添加会话信息
 
-如果用户名密码相同， 判定登陆成功， 页面跳转到 index.jsp， 将 user 信息添加到 session 中， 有关 session 可以查看[Session 和 Cookie 的作用](#session-和-cookie-的作用)
+如果用户名密码相同， 判定登陆成功， 页面跳转到 index.jsp， 将 user 信息添加到 session 中 。
 
 ```java
  if(user.equals(password)){
