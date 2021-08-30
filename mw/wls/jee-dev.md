@@ -121,3 +121,9 @@ if(session.getAttribute("user")!=null && !session.getAttribute("user").equals(""
 <p><a href="login.jsp">Login Here</a></p>
 <%} %>
 ```
+
+## 作业
+1. Get 和 Post 的区别
+2. Session 和 Cookie 的作用
+3. sendRedirect 和 forward 的区别
+4. form 怎么更改提交方式
