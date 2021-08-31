@@ -32,7 +32,7 @@
 * [计算机网络](https://www.bilibili.com/video/BV1EW411u7th?p=28)
 * [密码学](https://www.bilibili.com/video/BV1EW411u7th?p=33)
 
-不过，专业人事看科普其实是丢人的，如果想系统的补课，可以看看[这里](./basic/README.md)推荐的一些书。
+不过，专业人士看科普其实是丢人的，如果想系统的补课，可以看看[这里](./basic/README.md)推荐的一些书。
 
 ## 1.tx-and-jee - 交易系统与 JEE
 
