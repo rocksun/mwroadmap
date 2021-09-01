@@ -36,6 +36,7 @@
 * [计算机网络](https://www.bilibili.com/video/BV1EW411u7th?p=28)
 * [密码学](https://www.bilibili.com/video/BV1EW411u7th?p=33)
 
+<<<<<<< HEAD
 另外，阿里云的[面试题](https://hit-alibaba.github.io/interview/)也是一个很好的学习材料。
 
 不过，专业人事还是应该更系统地学习，可以看看[这里](./basic/README.md)推荐的一些书。
@@ -43,6 +44,9 @@
 ### 0.2.Linux操作基础（linux-001）
 
 Linux 操作基础也是一个必备条件，需要对 Linux 的基本概念和操作有所了解。
+=======
+不过，专业人士看科普其实是丢人的，如果想系统的补课，可以看看[这里](./basic/README.md)推荐的一些书。
+>>>>>>> 7d03b9682bf2646846d8847253cd9bf22b8469c2
 
 ## 1.tx-and-jee - 交易系统与 JEE（tx-001）
 
