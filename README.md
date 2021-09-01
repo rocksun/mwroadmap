@@ -1,9 +1,8 @@
 # 中间件技术专家之路
 
-其他材料：
+本文提到的大部分资料可以在[相关资料下载](https://www.jianguoyun.com/p/DTf1CzQQko7ZCRjc74QE)中找到。还有一些资料属于保密学习材料，不提供对外下载。
 
-* [相关资料下载](https://www.jianguoyun.com/p/DTf1CzQQko7ZCRjc74QE)
-* [专家工具箱](./toolkit/README.md)
+推荐使用[专家工具箱](./toolkit/README.md)中提到的工具。
 
 目录：
 
@@ -42,7 +41,7 @@
 
 ### 0.2.Linux操作基础（linux-001）
 
-Linux 操作基础也是一个必备条件，需要对 Linux 的基本概念和操作有所了解。
+Linux 操作基础也是一个必备条件，需要对 Linux 的基本概念和操作有所了解。“linux-001”是一份很好的学习材料，大家可以尝试学习。建议使用[文档](./toolkit/env/create-vms-with-vagrant-and-virtualbox.md)介绍的工具搭建虚拟机环境。
 
 ## 1.tx-and-jee - 交易系统与 JEE（tx-001）
 
