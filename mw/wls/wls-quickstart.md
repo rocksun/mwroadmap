@@ -19,14 +19,14 @@
 
 ## 准备介质
 
-本实验使用 WebLogic10.3.6 版本，可以到[WebLogic的下载页面](http://www.oracle.com/technetwork/middleware/weblogic/downloads/wls-for-dev-1703574.html)下找到版本10.3.6下的 Generic 。对应的 JDK 版本为 jdk1.7 ，可以到[JDK的下载页面](https://www.oracle.com/java/technologies/javase/javase7-archive-downloads.html#jdk-7u80-oth-JPR)中下载 jdk-7u80-linux-x64.tar.gz 。
+本实验使用 WebLogic 10.3.6 版本，可以到[WebLogic的下载页面](http://www.oracle.com/technetwork/middleware/weblogic/downloads/wls-for-dev-1703574.html)下找到版本10.3.6下的 Generic 。对应的 JDK 版本为 jdk1.7 ，可以到[JDK的下载页面](https://www.oracle.com/java/technologies/javase/javase7-archive-downloads.html#jdk-7u80-oth-JPR)中下载 jdk-7u80-linux-x64.tar.gz 。
 
-如果使用前面的方式部署环境，宿主机的 weblogic 目录会映射到虚拟机的 weblogic_data， 把之前下载的介质放到 weblogic 目录下, 到虚拟机中可以看到:
+如果使用前面提到的方式部署环境，宿主机的 weblogic 目录会映射到虚拟机的 weblogic_data，把下载的介质放到 weblogic 目录中, 到虚拟机中可以看到:
 
 ```bash
-[vagrant@wls2 weblogic_data]$ pwd
+[vagrant@wls1 weblogic_data]$ pwd
 /weblogic_data
-[vagrant@wls2 weblogic_data]$ ls
+[vagrant@wls1 weblogic_data]$ ls
 jdk-7u80-linux-x64.tar.gz   wls1036_generic.jar
 ```
 
@@ -71,12 +71,12 @@ WebLogic 的静默安装方式，需要准备一个 silent.xml 文件，内容�
 
 参数说明：
 
-* -mode: 指定安装模式为silent, 默认为console
-* -silent_xml: 指定silent_xml文件路径
+* -mode: 指定安装模式为 silent, 默认为 console
+* -silent_xml: 指定 silent_xml 文件路径
 * -log: 指定安装时输出日志的存放位置
-* -Djava.io.tmpdir: 在Unix/Linux平台上，如果提示临时空间不足，可以加上-Djava.io.tmpdir=tmpdirpath指定一块区域做临时空间
+* -Djava.io.tmpdir: 在 Unix/Linux 平台上，如果提示临时空间不足，可以加上 -Djava.io.tmpdir=tmpdirpath 指定一块区域做临时空间
   
-如果命令执行后有报错信息，可以通过指定的 /tmp/install_weblogic/weblogic_install.log 查看安装日志，查看详细的安装失败原因。
+如果一切正常，会提示安装成功。如果命令执行后有报错信息，可以通过指定的 /tmp/install_weblogic/weblogic_install.log 查看安装日志，查看详细的安装失败原因。
 
 ## 创建域
 
@@ -106,15 +106,15 @@ close template;
 * JavaHome： JDK的安装路径
 * ServerStartMode： 服务启动时的模式，prod是生产模式
 * AdminServer.ListenAddress： AdminServer的监听地址
-* AdminServer.ListenPort: AdminServer的监听端口
-* 创建用户weblogic，密码为weblogic123
+* AdminServer.ListenPort：AdminServer的监听端口
+* weblogic.password：密码为 weblogic123
 * write domain to: 创建的域路径
   
-根据实际环境修改响应文件，更多参数请参考 [WebLogic 静默建域官方文档](https://docs.oracle.com/cd/E13196_01/platform/docs81/confgwiz/silent.html#1043185)，然后可以执行静默安装命令:
+可以根据实际环境修改响应文件，更多参数请参考 [WebLogic 静默建域官方文档](https://docs.oracle.com/cd/E13196_01/platform/docs81/confgwiz/silent.html#1043185)，然后可以执行静默安装命令:
 
 ```shell
-[vagrant@wls2]$ cd /home/vagrant/Oracle/Middleware/wlserver_10.3/common/bin
-[vagrant@wls2 bin]$ ./config.sh \
+[vagrant@wls1]$ cd /home/vagrant/Oracle/Middleware/wlserver_10.3/common/bin
+[vagrant@wls1 bin]$ ./config.sh \
 -mode=silent \
 -silent_script=/home/vagrant/Oracle/Middleware/wlserver_10.3/common/bin/create_domain.rsp \
 -logfile=/tmp/domain_create/create_domain.log
@@ -135,7 +135,7 @@ password=weblogic123
 EOF
 ```
 
-在`/home/vagrant/Oracle/Middleware/user_projects/domains/base_domain/bin`目录下编写启动脚本，主要是为了修改JVM的启动参数, 不建议修改domain自动创建的脚本, 最好自己编写：
+不建议修改创建 domain 时生成的脚本，而应该在`/home/vagrant/Oracle/Middleware/user_projects/domains/base_domain/bin`目录中新建启动脚本，修改 JVM 的启动参数，例如以下代码创建了 startAdmin.sh ：
 
 ```shell
 [vagrant@wls1 bin]$ cat > startAdmin.sh <<EOF
@@ -146,13 +146,16 @@ export DERBY_FLAG=false
 export USER_MEM_ARGS="-Xms512m -Xmx512m -Djava.security.egd=file:/dev/./urandom"
 nohup ${ABSBINPATH}/startWebLogic.sh  http://172.16.0.151:7001>${ABSBINPATH}/../servers/AdminServer/logs/nohup.out 2>&1 &
 EOF
+[vagrant@wls1 bin]$ chmod u+x startAdmin.sh
 ```
 
-执行启动脚本，可以到AdminServer下的 logs 目录中查看日志，启动成功后日志中会提示`Server started in RUNNING mode`：
+执行启动脚本，可以到 AdminServer 下的 logs 目录中查看日志：
 
 ```shell
 [vagrant@wls1 base_domain]$ tail -f servers/AdminServer/logs/nohup.out
 ```
+
+如果一切正常，最后会提示`Server started in RUNNING mode`：
 
 通过 netstat 命令查看对应端口，确保端口已监听:
 
@@ -175,6 +178,7 @@ EOF
 部署应用成功后，可以直接输入控制台IP加页面名称进行访问，在我们的环境里，访问地址为: http://172.16.0.151:7001/loginweb。
 部署失败的话可以到`/home/vagrant/Oracle/Middleware/user_projects/domains/base_domain/servers/AdminServer/logs/`下查看AdminServer的日志，确定具体的报错信息。
 
-分享文章中测试用的war包，如果没有可以下载使用。
-百度网盘链接: https://pan.baidu.com/s/1vr8hxVxjbFrnHdndfy0G2A 
-提取码: 4ind
+分享文章中测试用的war包，如果没有可以下载使用：
+
+* 百度网盘链接: https://pan.baidu.com/s/1vr8hxVxjbFrnHdndfy0G2A 
+* 提取码: 4ind

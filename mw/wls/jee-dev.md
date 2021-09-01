@@ -1,32 +1,29 @@
 # JEE 开发入门
 
-- [JEE 开发入门](#jee-开发入门)
-  - [准备介质](#准备介质)
-  - [安装介质](#安装介质)
-  - [创建项目](#创建项目)
-  - [创建 index.jsp 文件](#创建-indexjsp-文件)
-  - [创建 login.jsp 文件](#创建-loginjsp-文件)
-  - [创建 Servlet](#创建-servlet)
-  - [LoginServelet 添加会话信息](#loginservelet-添加会话信息)
-  - [index.jsp 添加会话判断](#indexjsp-添加会话判断)
-  - [运行程序](#运行程序)
-  - [思考](#思考)
+- [准备介质](#准备介质)
+- [安装介质](#安装介质)
+- [创建项目](#创建项目)
+- [创建 index.jsp 文件](#创建-indexjsp-文件)
+- [创建 login.jsp 文件](#创建-loginjsp-文件)
+- [创建 Servlet](#创建-servlet)
+- [LoginServelet 添加会话信息](#loginservelet-添加会话信息)
+- [index.jsp 添加会话判断](#indexjsp-添加会话判断)
+- [运行程序](#运行程序)
+- [思考](#思考)
 
 ## 准备介质
 
 该实验使用 Windows 环境， 安装的介质都需要是 Windows 版本， 在连接中找到对应的版本下载即可。 
 
-Eclipse [下载页面](https://www.eclipse.org/downloads/download.php?file=/technology/epp/downloads/release/2021-06/R/eclipse-jee-2021-06-R-win32-x86_64.zip)
-
-WebLogic 10.3.6 Generic [下载页面](http://www.oracle.com/technetwork/middleware/weblogic/downloads/wls-for-dev-1703574.html)
-
-jdk-7u80-windows-x64 [下载页面](https://www.oracle.com/java/technologies/javase/javase7-archive-downloads.html#jdk-7u80-oth-JPR)
+ * Eclipse [下载页面](https://www.eclipse.org/downloads/download.php?file=/technology/epp/downloads/release/2021-06/R/eclipse-jee-2021-06-R-win32-x86_64.zip)
+* WebLogic 10.3.6 Generic [下载页面](http://www.oracle.com/technetwork/middleware/weblogic/downloads/wls-for-dev-1703574.html)
+* jdk-7u80-windows-x64 [下载页面](https://www.oracle.com/java/technologies/javase/javase7-archive-downloads.html#jdk-7u80-oth-JPR)
 
 ## 安装介质
 
 1. JDK 安装：
 
-安装 Weblogc 之前需要先安装 JDK， 选择安装路径， 其余配置点击下一步即可，安装过程中会出现两次安装提示：第一次是安装 jdk ，第二次是安装 jre ， 本文安装路径为 D:\Java\jdk 和 D:\Java\jre
+安装 Weblogc 之前需要先安装 JDK， 选择安装路径， 其余配置点击下一步即可，安装过程中会出现两次安装提示：第一次是安装 jdk ，第二次是安装 jre ， 本文安装路径为 D:\Java\jdk 和 D:\Java\jre 。
 
 2. 配置环境变量：
 
@@ -40,22 +37,24 @@ jdk-7u80-windows-x64 [下载页面](https://www.oracle.com/java/technologies/jav
 
 3. Eclipse 安装：
 
-运行安装包， 弹出安装界面， 选择 Eclipse IDE for Enterprise Java Developers， 选则安装路径， 本文路径为 D:\Eclipse\ (目录中最好不要有中文)， 接受安装协议， 点击安装， 等待安装完成
+运行安装包， 弹出安装界面， 选择 Eclipse IDE for Enterprise Java Developers， 选则安装路径， 本文路径为 D:\Eclipse\ (目录中最好不要有中文和空格)， 接受安装协议， 点击安装， 等待安装完成
 
 4. WebLogic 安装:
 
 运行安装包， 创建中间件主目录， 本文中路径为 D:\Oracle\Middleware\， 注册安全更新中去掉默认的勾选， 选择 weblogic 默认的配置安装， 之后配置全部下一步， 等待安装完成 
 
 ## 创建项目
-1. 启动 Eclipse，选择 workspace (工作路径)
+
+1. 启动 Eclipse，选择 workspace (工作目录)
 2. 点击 File -> New -> Dynamic Web Project
-3. 设置 Project name ，本文这里设置为loginweb,
-    Target runtime 点击 New Runtime, 选择 Oracle Weblogic Server ，
+3. 设置 Project name ，本文这里设置为 loginweb
+    Target runtime 点击 New Runtime, 选择 Oracle Weblogic Server 
     这里需要下载 Weblogic 的插件，下载完成后点击 Next 
 4. 设置刚刚下载的 Weblogic 和 Jdk 目录，设置完成后点击下一步
 5. 项目创建完成。
 
 ## 创建 index.jsp 文件
+
 在 loginweb/src/mian 下右键 webapp 目录 -> New -> JSP file, 创建 index.jsp 文件, 打开 index.jsp 可以看到:
 
 ```jsp
