@@ -1,14 +1,15 @@
 # 中间件技术专家之路
 
-其他材料：
+本文提到的大部分资料可以在[相关资料下载](https://www.jianguoyun.com/p/DTf1CzQQko7ZCRjc74QE)中找到。还有一些资料属于保密学习材料，不提供对外下载。
 
-* [相关资料下载](https://www.jianguoyun.com/p/DTf1CzQQko7ZCRjc74QE)
-* [专家工具箱](./toolkit/README.md)
+推荐使用[专家工具箱](./toolkit/README.md)中提到的工具。
 
 目录：
 
 - [0.basic - 基础知识](#0basic---基础知识)
-- [1.tx-and-jee - 交易系统与 JEE](#1tx-and-jee---交易系统与-jee)
+  - [0.1.计算机基础（cs-001）](#01计算机基础cs-001)
+  - [0.2.Linux操作基础（linux-001）](#02linux操作基础linux-001)
+- [1.tx-and-jee - 交易系统与 JEE（tx-001）](#1tx-and-jee---交易系统与-jeetx-001)
 - [2.jee-mw - 各类 JEE 中间件](#2jee-mw---各类-jee-中间件)
   - [2.1.WLS](#21wls)
   - [2.2.WAS](#22was)
@@ -21,6 +22,8 @@
 
 ## 0.basic - 基础知识
 
+### 0.1.计算机基础（cs-001）
+
 操作系统、网络、密码学这些知识应该是从事计算机相关工作的基础，如果确实某种原因我们没有学好，那我们只能通过一些方式突击学习一下。[10分钟速成课：计算机科学](https://space.bilibili.com/5385034/channel/detail?cid=16059&ctype=0)是一个很棒的系列科普视频，大家有时间可以自己看看，以下是我认为可以优先观看的内容：
 
 * [早期的计算](https://www.bilibili.com/video/BV1EW411u7th?p=1)
@@ -32,9 +35,15 @@
 * [计算机网络](https://www.bilibili.com/video/BV1EW411u7th?p=28)
 * [密码学](https://www.bilibili.com/video/BV1EW411u7th?p=33)
 
-不过，专业人事看科普其实是丢人的，如果想系统的补课，可以看看[这里](./basic/README.md)推荐的一些书。
+另外，阿里云的[面试题](https://hit-alibaba.github.io/interview/)也是一个很好的学习材料。
 
-## 1.tx-and-jee - 交易系统与 JEE
+不过，专业人事还是应该更系统地学习，可以看看[这里](./basic/README.md)推荐的一些书。
+
+### 0.2.Linux操作基础（linux-001）
+
+Linux 操作基础也是一个必备条件，需要对 Linux 的基本概念和操作有所了解。“linux-001”是一份很好的学习材料，大家可以尝试学习。建议使用[文档](./toolkit/env/create-vms-with-vagrant-and-virtualbox.md)介绍的工具搭建虚拟机环境。
+
+## 1.tx-and-jee - 交易系统与 JEE（tx-001）
 
 了解 IT 系统的架构，历史背景，对我们工作的意义。
 
@@ -54,7 +63,7 @@
 
 WebLogic Server 是 Oracle 的一款 JEE 中间件，学习过程可以分为以下几个步骤：
 
-* [WebLogic 的基本概念](./mw/wls/wls-quickstart.md)
+* [WebLogic 的基本概念 :todo](:todo)
 * [WebLogic 快速上手（实验）](./mw/wls/wls-quickstart.md)
 * [WebLogic 应用开发（实验）](./mw/wls/jee-dev.md)
 * [WebLogic 日常任务（实验）](./mw/wls/common-tasks.md)
@@ -66,6 +75,9 @@ WebLogic Server 是 Oracle 的一款 JEE 中间件，学习过程可以分为以
 * Professional Oracle WebLogic Server
 
 ### 2.2.WAS
+
+
+
 
 ### 2.3.Tomcat
 
